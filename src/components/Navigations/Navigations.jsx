@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
 import { NavLink } from 'react-router-dom';
 import style from './navigation.module.css';
 // Data
@@ -33,9 +33,5 @@ const Navigation = () => {
     </nav>
   );
 };
-
-// const mapStateToProps = state => ({
-//   isAuth: authSelectors.getIsAuthenticated(state),
-// });
 
 export default Navigation;

@@ -21,12 +21,4 @@ const UserMenu = () => {
   );
 };
 
-// const mapStateToProps = state => ({
-//   name: authSelectors.getUsername(state),
-// });
-
-// const mapDispatchToProps = {
-//   onLogout: authOperations.logOut,
-// };
-
 export default UserMenu;
