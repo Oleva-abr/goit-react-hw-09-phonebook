@@ -1,5 +1,5 @@
 import React, { Component, Suspense, lazy } from 'react';
-
+// import {useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import { authOperations } from '../redux/auth';
 
@@ -29,6 +29,9 @@ const LoginPage = lazy(() =>
   import('../pages/LoginPage' /* webpackChunkName: "login-page" */),
 );
 
+// function App() {
+//   const dispatch = useDispatch(function)
+// }
 class App extends Component {
   componentDidMount() {
     this.props.onGetCurretnUser();
