@@ -6,9 +6,7 @@ import { contactsSelectors } from '../redux/contacts';
 import { useSelector } from 'react-redux';
 
 import ContactsForm from '../components/ContactForm';
-
 import Filter from '../components/Filter';
-
 import ContactList from '../components/ContactList';
 
 const ContactsPage = () => {
