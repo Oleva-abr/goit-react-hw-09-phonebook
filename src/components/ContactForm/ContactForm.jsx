@@ -5,6 +5,11 @@ import style from './contactForm.module.css';
 import { connect } from 'react-redux';
 import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
+
 class ContactForm extends Component {
   static propTypes = {
     name: PropTypes.string,
@@ -26,7 +31,7 @@ class ContactForm extends Component {
     const { name } = this.state;
     const { contacts, onSubmit } = this.props;
     if (contacts.some(elm => elm.name.toLowerCase() === name.toLowerCase())) {
-      return alert(`${name} is already in contacts`);
+      return toast(`${name} is already in contacts`);
     }
 
     onSubmit(this.state);
