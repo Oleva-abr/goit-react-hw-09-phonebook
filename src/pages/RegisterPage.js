@@ -5,6 +5,7 @@ import style from '../components/ContactForm/contactForm.module.css';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoginForm from '../components/LoginForm';
 
 toast.configure();
 
