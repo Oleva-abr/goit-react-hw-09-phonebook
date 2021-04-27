@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
 import style from './appBar.module.css';
 // Data
 import { authSelectors } from '../../redux/auth';
