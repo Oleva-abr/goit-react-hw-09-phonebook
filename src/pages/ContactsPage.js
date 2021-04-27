@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spin from '../components/Spinner';
 import { contactsOperations, contactsSelectors } from '../redux/contacts';
+//hook
 
 import ContactsForm from '../components/ContactForm';
 
