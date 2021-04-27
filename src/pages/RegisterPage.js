@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { authOperations } from '../redux/auth';
 import style from '../components/ContactForm/contactForm.module.css';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
+
 class RegisterPage extends Component {
   state = {
     name: '',
