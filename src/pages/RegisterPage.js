@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { authOperations } from '../redux/auth';
 import style from '../components/ContactForm/contactForm.module.css';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 class RegisterPage extends Component {
   state = {
     name: '',
@@ -17,8 +22,8 @@ class RegisterPage extends Component {
     e.preventDefault();
     const { name, email } = this.state;
 
-    if (!name) return alert('Please enter contact name');
-    if (!email) return alert('Please enter contact email');
+    if (!name) return toast('Please enter contact name');
+    if (!email) return toast('Please enter contact email');
     this.props.onRegister(this.state);
 
     this.setState({ name: '', email: '', password: '' });
