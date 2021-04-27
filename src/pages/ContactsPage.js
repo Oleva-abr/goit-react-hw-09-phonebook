@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+
 import Spin from '../components/Spinner';
-import { contactsOperations, contactsSelectors } from '../redux/contacts';
+import { contactsSelectors } from '../redux/contacts';
 //hook
+import { useSelector } from 'react-redux';
 
 import ContactsForm from '../components/ContactForm';
 
@@ -10,34 +11,22 @@ import Filter from '../components/Filter';
 
 import ContactList from '../components/ContactList';
 
-class ContactsPage extends Component {
-  componentDidMount() {
-    this.props.fetchContacts();
-  }
+const ContactsPage = () => {
+  const isLoadingContacts = useSelector(contactsSelectors.getLoading);
 
-  render() {
-    return (
-      <div>
-        <h2>Contacts</h2>
+  return (
+    <div>
+      <h2>Contacts</h2>
 
-        <ContactsForm />
+      <ContactsForm />
 
-        <Filter />
+      <Filter />
 
-        {this.props.isLoadingContacts && <Spin />}
+      {isLoadingContacts && <Spin />}
 
-        <ContactList />
-      </div>
-    );
-  }
-}
+      <ContactList />
+    </div>
+  );
+};
 
-const mapStateToProps = state => ({
-  isLoadingContacts: contactsSelectors.getLoading(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactsPage);
+export default ContactsPage;
