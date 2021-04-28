@@ -1,79 +1,141 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import style from '../ContactForm/contactForm.module.css';
 import { authOperations } from '../../redux/auth';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
-class LoginForm extends Component {
-  state = {
-    email: '',
-    password: '',
+export default function LoginForm() {
+  const [email, setEmail] = useState('');
+  const changeEmail = e => {
+    setEmail(e.target.value);
   };
 
-  handleChange = ({ target: { name, value } }) => {
-    console.log(value);
-    this.setState({ [name]: value });
+  const [password, setPassword] = useState('');
+  const changePassword = e => {
+    setPassword(e.target.value);
+  };
+  const dispatch = useDispatch();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      toast('Please fill all fields');
+      return;
+    }
+
+    dispatch(authOperations.LogIn({ email, password }));
+    setEmail('');
+    setPassword('');
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    const { email, password } = this.state;
+  return (
+    <>
+      <h1>Login Page</h1>
 
-    if (!email) return toast('Please enter contact email');
+      <form
+        className={style.loginForm}
+        onSubmit={handleSubmit}
+        autoComplete="off"
+      >
+        <label className={style.label}>Email address</label>
 
-    if (!password) return toast('Please enter contact password');
-    this.props.onLogin(this.state);
+        <input
+          className={style.input}
+          type="email"
+          name="email"
+          value={email}
+          onChange={changeEmail}
+        />
 
-    this.setState({ email: '', password: '' });
-  };
-
-  render() {
-    const { email, password } = this.state;
-
-    return (
-      <>
-        <h1>Login Page</h1>
-
-        <form
-          className={style.loginForm}
-          onSubmit={this.handleSubmit}
-          autoComplete="off"
-        >
-          <label className={style.label}>Email address</label>
+        <div>
+          <label className={style.label}>Password</label>
 
           <input
             className={style.input}
-            type="email"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
+            type="password"
+            name="password"
+            value={password}
+            onChange={changePassword}
           />
+        </div>
 
-          <div>
-            <label className={style.label}>Password</label>
-
-            <input
-              className={style.input}
-              type="password"
-              name="password"
-              value={password}
-              onChange={this.handleChange}
-            />
-          </div>
-
-          <button className={style.btn} type="submit">
-            Submit
-          </button>
-        </form>
-      </>
-    );
-  }
+        <button className={style.btn} type="submit">
+          Submit
+        </button>
+      </form>
+    </>
+  );
 }
+// class LoginForm extends Component {
+//   state = {
+//     email: '',
+//     password: '',
+//   };
 
-const mapDispatchToProps = {
-  onLogin: authOperations.LogIn,
-};
+//   handleChange = ({ target: { name, value } }) => {
+//     console.log(value);
+//     this.setState({ [name]: value });
+//   };
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+//   handleSubmit = event => {
+//     event.preventDefault();
+//     const { email, password } = this.state;
+
+//     if (!email || !password) return toast('Please fill all fields');
+
+//     this.props.onLogin(this.state);
+
+//     this.setState({ email: '', password: '' });
+//   };
+
+//   render() {
+//     const { email, password } = this.state;
+
+//     return (
+//       <>
+//         <h1>Login Page</h1>
+
+//         <form
+//           className={style.loginForm}
+//           onSubmit={this.handleSubmit}
+//           autoComplete="off"
+//         >
+//           <label className={style.label}>Email address</label>
+
+//           <input
+//             className={style.input}
+//             type="email"
+//             name="email"
+//             value={email}
+//             onChange={this.handleChange}
+//           />
+
+//           <div>
+//             <label className={style.label}>Password</label>
+
+//             <input
+//               className={style.input}
+//               type="password"
+//               name="password"
+//               value={password}
+//               onChange={this.handleChange}
+//             />
+//           </div>
+
+//           <button className={style.btn} type="submit">
+//             Submit
+//           </button>
+//         </form>
+//       </>
+//     );
+//   }
+// }
+
+// const mapDispatchToProps = {
+//   onLogin: authOperations.LogIn,
+// };
+
+// export default connect(null, mapDispatchToProps)(LoginForm);
