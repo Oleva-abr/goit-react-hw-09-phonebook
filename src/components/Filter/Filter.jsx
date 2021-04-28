@@ -25,12 +25,4 @@ Filter.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-// const mapStateToProps = state => ({
-//   value: contactsSelectors.getFilter(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   onChange: event => dispatch(contactsActions.changeFilter(event.target.value)),
-// });
-
 export default Filter;
