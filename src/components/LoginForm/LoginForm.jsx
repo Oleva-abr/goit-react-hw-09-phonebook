@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 export default function LoginForm() {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const changeEmail = e => {
     setEmail(e.target.value);
@@ -16,7 +18,6 @@ export default function LoginForm() {
   const changePassword = e => {
     setPassword(e.target.value);
   };
-  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();

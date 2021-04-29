@@ -9,6 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 export default function ContactForm() {
+  const dispatch = useDispatch();
+  
   const [name, setName] = useState('');
   const changeName = e => {
     setName(e.target.value);
@@ -20,7 +22,6 @@ export default function ContactForm() {
   };
 
   const contacts = useSelector(contactsSelectors.getAllContacts);
-  const dispatch = useDispatch();
 
   const submitContact = e => {
     e.preventDefault();
